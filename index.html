@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="output.css">
+    <link rel="website icon" type="png" href="images/weather.png">
+</head>
+<body>
+    <!-- wrapper -->
+    <div class="relative h-[100%] w-full bg-gradient-to-br from-blue-500 to-blue-600 p-2 grid grid-cols-1 md:[grid-template-columns:1fr_2fr] gap-3 ">
+
+        <!-- left section -->
+        <div class="relative bg-transparent  p-2 border-b-white border-b-8 md:border-r-white md:border-r-8 grid md:[grid-template-rows:0.5fr_0.5fr_0.8fr_repeat(2,1fr)] gap-2">
+
+            <!-- search location -->
+            <div class="flex justify-between items-center p-2 gap-2">
+                <!-- search input -->
+                <input class="w-full h-full rounded-lg outline-none text-2xl px-4 font-sans focus:[box-shadow:inset_0px_0px_5px_black]" 
+                type="text"
+                placeholder="Search for city..."
+                data-searchCity>
+
+                <button class="p-3 h-full bg-blue-700 rounded-lg [border:1px_solid_white] cursor-pointer active:bg-blue-800"
+                data-searchButton>
+                    <img src="images/search.png" alt="" height="30" width="30">
+                </button>
+
+            </div>
+
+            <!-- location and state -->
+            <div class="hidden p-2"
+            data-cityInfo>
+                <h1 class="font-bold text-3xl tracking-wide font-sans text-white"
+                data-cityName >
+                    Delhi, India
+                </h1>
+                <p class="font-[500] text-white "
+                data-cityDayDate>
+                    Sunday 4 February
+                </p>
+            </div>
+
+            <!-- current temprature -->
+            <div class="hidden p-2 flex gap-4 items-center justify-start"
+            data-cityTempDiv>
+                <img src="images/icons/clear-day.png" height="112px" alt="currentWeatherIcon" width="112"
+                data-cityCurrentWeatherIcon>
+                <div>
+                    <p class="text-7xl text-white font-light"
+                    data-cityCurrentTemp>
+                        21&deg;C
+                    </p>
+                    <p class="text-white mt-2 text-lg"
+                    data-cityCurrentDesc>
+                        Mostly Sunny
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- current stats -->
+            <div class="hidden text-white grid grid-cols-3 gap-2 p-2"
+            data-cityStats>
+
+                <!-- high low -->
+                <div class="bg-[#1763a2]  flex flex-col justify-around items-center border-2 rounded-lg">
+                    <!-- high -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-cityHighTemp>
+                            23&deg;C
+                        </p>
+                        <p class="text-center text-xl">
+                            High
+                        </p>
+                    </div>
+                    <!-- low -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-cityLowTemp>
+                            18&deg;C
+                        </p>
+                        <p class="text-center text-xl">
+                            Low
+                        </p>
+                    </div>
+                </div>
+
+                <!-- wind & rain -->
+                <div class="bg-[#1763a2]  flex flex-col justify-around items-center border-2 rounded-lg">
+                    <!-- wind -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-cityWindSpeed>
+                            7mph
+                        </p>
+                        <p class="text-center text-xl">
+                            Wind
+                        </p>
+                    </div>
+
+                    <!-- rain -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-cityRain>
+                            0%
+                        </p>
+                        <p class="text-center text-xl">
+                            Rain
+                        </p>
+                    </div>
+                </div>
+
+                <!-- sunrise and sunset -->
+                <div class="bg-[#1763a2]  flex flex-col justify-around items-center border-2 rounded-lg">
+                    <!-- sunrise -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-citySunrise>
+                            5:27
+                        </p>
+                        <p class="text-center text-xl"
+                        >
+                            Sunrise
+                        </p>
+                    </div>
+
+                    <!-- sunset -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-citySunset>
+                            20:57
+                        </p>
+                        <p class="text-center text-xl">
+                            Sunset
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- next 5 days cards -->
+            <div class="hidden  p-2 grid [grid-template-rows:0.4fr_1fr] grid-cols-5 [column-gap:3px] text-white"
+            data-cityNext5Days>
+                <h1 class="text-white text-xl my-1 col-start-1 col-end-6 font-bold">
+                    Next 5 days
+                </h1>
+                
+                <div class="bg-[#1763a2]  [border:1px_solid_white] rounded-md flex flex-col justify-evenly items-center"
+                data-forecast1>
+                    <p class="font-[500] text-xl"
+                    data-day1>
+                        Tue
+                    </p>
+
+                    <img src="" alt="dayIcon"
+                    data-dayIcon1 height="50px" width="50px">
+
+                    <p data-dayTemp1>
+                        10-21&deg;
+                    </p>
+                </div>
+                <div class="bg-[#1763a2]  [border:1px_solid_white] rounded-md flex flex-col justify-evenly items-center"
+                data-forecast2>
+                    <p class="font-[500] text-xl"
+                    data-day2>Wed</p>
+
+                    <img src="" alt="dayIcon"
+                    data-dayIcon2 height="50px" width="50px">
+
+                    <p>
+                        9-18&deg;
+                    </p>
+                </div>
+                <div class="bg-[#1763a2]  [border:1px_solid_white] rounded-md flex flex-col justify-evenly items-center"
+                data-forecast3>
+                    <p class="font-[500] text-xl"
+                    data-day3>Thu</p>
+
+                    <img src="" alt="dayIcon"
+                    data-dayIcon3 height="50px" width="50px">
+
+                    <p>
+                        7-15&deg;
+                    </p>
+                </div>
+                <div class="bg-[#1763a2]  [border:1px_solid_white] rounded-md flex flex-col justify-evenly items-center"
+                data-forecast4>
+                    <p class="font-[500] text-xl"
+                    data-day4>Fri</p>
+
+                    <img src="" alt="dayIcon"
+                    data-dayIcon4 height="50px" width="50px">
+
+                    <p>
+                        10-21&deg;
+                    </p>
+                </div>
+                <div class="bg-[#1763a2] [border:1px_solid_white] rounded-md flex flex-col justify-evenly items-center"
+                data-forecast5>
+                    <p class="font-[500] text-xl"
+                    data-day5>Sat</p>
+
+                    <img src="" alt="dayIcon"
+                    data-dayIcon5 height="50px" width="50px">
+
+                    <p>
+                        12-24&deg;
+                    </p>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- right section -->
+        <div class="relative bg-transparent grid  md:grid-cols-2 gap-2 px-2 pl-0 md:border-t-4 md:border-none"
+        data-rightSection>
+            <!-- location and state -->
+            <div class="invisible px-2 pb-1 col-span-2 md:col-span-2 border-b-2">
+                <h1 class="font-bold text-3xl tracking-wide font-sans text-white"
+                data-MycityName >
+                    Delhi, India
+                </h1>
+                <p class="font-[500] text-white "
+                data-MydayDate>
+                    Sunday 4 February
+                </p>
+            </div>
+
+            <!--  current temprature-->
+            <div class="invisible p-2 md:border-r-2 border-white flex gap-2 items-center justify-center md:col-span-1 col-span-2">
+                <img src="" alt="currentWeatherIcon"
+                data-MycurrentWeatherIcon class="h-16 md:h-28">
+                <div>
+                    <p class="text-7xl text-white font-light"
+                    data-MycurrentTemp>
+                        21&deg;C
+                    </p>
+                    <p class="text-white mt-2 text-[1.1rem]"
+                    data-MycurrentDesc>
+                    Partly cloudy throughout the day with a chance of rain throughout the day
+                    </p>
+                </div>
+                
+            </div>
+
+            <!-- current stats -->
+            <div class ="invisible col-span-2 grid grid-cols-3 gap-2 p-2 text-white md:col-span-1">
+
+                <!-- high low -->
+                <div class="bg-[#1763a2]  flex flex-col justify-around items-center border-2 rounded-lg">
+                    <!-- high -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-myMaxTemp>
+                            23&deg;C
+                        </p>
+                        <p class="text-center text-xl">
+                            High
+                        </p>
+                    </div>
+                    <!-- low -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-myMinTemp>
+                            18&deg;C
+                        </p>
+                        <p class="text-center text-xl">
+                            Low
+                        </p>
+                    </div>
+                </div>
+
+                <!-- wind & rain -->
+                <div class="bg-[#1763a2]  flex flex-col justify-around items-center border-2 rounded-lg">
+                    <!-- wind -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-currentWindSpeed>
+                            7mph
+                        </p>
+                        <p class="text-center text-xl">
+                            Wind
+                        </p>
+                    </div>
+
+                    <!-- rain -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-currentRain>
+                            0%
+                        </p>
+                        <p class="text-center text-xl">
+                            Rain
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- sunrise and sunset -->
+                <div class="bg-[#1763a2]  flex flex-col justify-around items-center border-2 rounded-lg">
+                    <!-- sunrise -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-currentSunrise>
+                            5:27
+                        </p>
+                        <p class="text-center text-xl">
+                            Sunrise
+                        </p>
+                    </div>
+
+                    <!-- sunset -->
+                    <div>
+                        <p class="text-center font-[500] text-2xl"
+                        data-currentSunset>
+                            20:57
+                        </p>
+                        <p class="text-center text-xl">
+                            Sunset
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- weather by hour -->
+            <div class="invisible text-white md:col-span-2 col-span-2 border-t-2 px-2 grid [grid-template-rows:0.5fr_1.5fr] md:grid-cols-7 md:[column-gap:14px]">
+
+                <h1 class="text-white text-xl my-1 font-bold col-start-1 col-end-8">
+                    Todays Weather
+                </h1>
+                <div class="text-white bg-[#1763a2] flex flex-col justify-evenly items-center [border:1px_solid_white] rounded-md">
+                    <p class="text-lg font-[500]"
+                    data-time1>
+                        3am
+                    </p>
+                    <img src="images/icons/partly-cloudy-day.png" alt="" class="h-[38px]"
+                    data-timeIcon1>
+                    <p
+                    data-timeTemp1>
+                        14&deg;
+                    </p>
+                </div>
+                <div class="bg-[#1763a2] flex flex-col justify-evenly items-center [border:1px_solid_white] rounded-md">
+                    <p class="text-lg font-[500]"
+                    data-time2>
+                        6am
+                    </p>
+                    <img src="images/icons/cloudy.png" alt="" class="h-[38px]"
+                    data-timeIcon2>
+                    <p
+                    data-timeTemp2>
+                        14&deg;
+                    </p>
+                </div>
+                <div class="bg-[#1763a2] flex flex-col justify-evenly items-center [border:1px_solid_white] rounded-md">
+                    <p class="text-lg font-[500]"
+                    data-time3>
+                        9am
+                    </p>
+                    <img src="images/icons/cloudy.png" alt="" class="h-[38px]"
+                    data-timeIcon3>
+                    <p
+                    data-timeTemp3>
+                        14&deg;
+                    </p>
+                </div>
+                <div class="bg-[#1763a2] flex flex-col justify-evenly items-center [border:1px_solid_white] rounded-md">
+                    <p class="text-lg font-[500]"
+                    data-time4>
+                        12pm
+                    </p>
+                    <img src="images/icons/cloudy.png" alt="" class="h-[38px]"
+                    data-timeIcon4>
+                    <p
+                    data-timeTemp4>
+                        14&deg;
+                    </p>
+                </div>
+                <div class="bg-[#1763a2] flex flex-col justify-evenly items-center [border:1px_solid_white] rounded-md">
+                    <p class="text-lg font-[500]"
+                    data-time5>
+                        3pm
+                    </p>
+                    <img src="images/icons/cloudy.png" alt="" class="h-[38px]"
+                    data-timeIcon5>
+                    <p
+                    data-timeTemp5>
+                        14&deg;
+                    </p>
+                </div>
+                <div class="bg-[#1763a2] flex flex-col justify-evenly items-center [border:1px_solid_white] rounded-md">
+                    <p class="text-lg font-[500]"
+                    data-time5>
+                        6pm
+                    </p>
+                    <img src="images/icons/cloudy.png" alt="" class="h-[38px]"
+                    data-timeIcon5>
+                    <p
+                    data-timeTemp5>
+                        14&deg;
+                    </p>
+                </div>
+                <div class="bg-[#1763a2] flex flex-col justify-evenly items-center [border:1px_solid_white] rounded-md">
+                    <p class="text-lg font-[500]"
+                    data-time6>
+                        9pm
+                    </p>
+                    <img src="images/icons/cloudy.png" alt="" class="h-[38px]"
+                    data-timeIcon6>
+                    <p
+                    data-timeTemp6>
+                        14&deg;
+                    </p>
+                </div>
+            </div>
+
+            <!-- next 5 days -->
+            <div class="invisible col-span-2 grid [grid-template-rows:0.5fr_repeat(5,1fr)] gap-1 items-center">
+                <h1 class="py-[0.5rem] text-white font-bold text-xl px-2 border-b-[1px]">
+                    Next 5 days
+                </h1>
+                <!-- day 1 -->
+                <div class="bg-[#1763a2] flex justify-around items-center text-white text-center">
+
+                    <!-- day -->
+                    <div class="min-w-10">
+                        <p class="font-[500] text-center"
+                        data-myDay1>
+                            Tue
+                        </p>
+                        <p
+                        data-myDate1>
+                            30/7
+                        </p>
+                    </div>
+
+                    <img src="images/icons/partly-cloudy-day.png" alt="" class="h-[35px] max-w-[35px]" data-myDayIcon1>
+
+                    <!-- low -->
+                    <div>
+                        <p
+                        data-myDayLow1>
+                            10&deg;
+                        </p>
+                        <p>
+                            Low
+                        </p>
+                    </div>
+
+                    <!-- high -->
+                    <div>
+                        <p
+                        data-myDayHigh1>
+                            14&deg;
+                        </p>
+                        <p>
+                            High
+                        </p>
+                    </div>
+
+                    <!-- wind -->
+                    <div>
+                        <p
+                        data-myDaySpeed1>
+                            12mph
+                        </p>
+                        <p>
+                            Wind
+                        </p>
+                    </div>
+
+                    <!-- rain -->
+                    <div>
+                        <p
+                        data-myDayRain1>
+                            0%
+                        </p>
+                        <p>
+                            Rain
+                        </p>
+                    </div>
+                </div>
+
+                <!-- day 2 -->
+                <div  class="bg-[#1763a2] flex justify-around items-center text-white text-center">
+
+                    <!-- day -->
+                    <div class="min-w-10">
+                        <p class="font-[500] text-center"
+                        data-myDay2>
+                            Tue
+                        </p>
+                        <p
+                        data-myDate2>
+                            30/7
+                        </p>
+                    </div>
+
+                    <img src="images/icons/partly-cloudy-day.png" alt="" class="h-[35px] max-w-[35px]" data-myDayIcon2>
+
+                    <!-- low -->
+                    <div>
+                        <p
+                        data-myDayLow2>
+                            10&deg;
+                        </p>
+                        <p>
+                            Low
+                        </p>
+                    </div>
+
+                    
+                    <!-- high -->
+                    <div>
+                        <p
+                        data-myDayHigh2>
+                            14&deg;
+                        </p>
+                        <p>
+                            High
+                        </p>
+                    </div>
+
+                    <!-- wind -->
+                    <div>
+                        <p
+                        data-myDaySpeed2>
+                            12mph
+                        </p>
+                        <p>
+                            Wind
+                        </p>
+                    </div>
+
+                    <!-- rain -->
+                    <div>
+                        <p
+                        data-myDayRain2>
+                            0%
+                        </p>
+                        <p>
+                            Rain
+                        </p>
+                    </div>
+                </div>
+
+                <!-- day 3 -->
+                <div  class="bg-[#1763a2] flex justify-around items-center text-white text-center">
+                    
+                    <!-- day -->
+                    <div class="min-w-10">
+                        <p class="font-[500] text-center"
+                        data-myDay3>
+                            Tue
+                        </p>
+                        <p
+                        data-myDate3>
+                            30/7
+                        </p>
+                    </div>
+                    
+                    <img src="images/icons/partly-cloudy-day.png" alt="" class="h-[35px] max-w-[35px]" data-myDayIcon3>
+                    
+                    <!-- low -->
+                    <div>
+                        <p
+                        data-myDayLow3>
+                            10&deg;
+                        </p>
+                        <p>
+                            Low
+                        </p>
+                    </div>
+                    
+                    <!-- high -->
+                    <div>
+                        <p
+                        data-myDayHigh3>
+                            14&deg;
+                        </p>
+                        <p>
+                            High
+                        </p>
+                    </div>
+                    
+                    <!-- wind -->
+                    <div>
+                        <p
+                        data-myDaySpeed3>
+                            12mph
+                        </p>
+                        <p>
+                            Wind
+                        </p>
+                    </div>
+                    
+                    <!-- rain -->
+                    <div>
+                        <p
+                        data-myDayRain3>
+                            0%
+                        </p>
+                        <p>
+                            Rain
+                        </p>
+                    </div>
+                </div>
+
+                <!-- day 4 -->
+                <div  class="bg-[#1763a2] flex justify-around items-center text-white text-center">
+                                        
+                    <!-- day -->
+                    <div class="min-w-10">
+                        <p class="font-[500] text-center"
+                        data-myDay4>
+                            Tue
+                        </p>
+                        <p
+                        data-myDate4>
+                            30/7
+                        </p>
+                    </div>
+                    
+                    <img src="images/icons/partly-cloudy-day.png" alt="" class="h-[35px] max-w-[35px]" data-myDayIcon4>
+                    
+                    <!-- low -->
+                    <div>
+                        <p
+                        data-myDayLow4>
+                            10&deg;
+                        </p>
+                        <p>
+                            Low
+                        </p>
+                    </div>
+                    
+                    <!-- high -->
+                    <div>
+                        <p
+                        data-myDayHigh4>
+                            14&deg;
+                        </p>
+                        <p>
+                            High
+                        </p>
+                    </div>
+                    
+                    <!-- wind -->
+                    <div>
+                        <p
+                        data-myDaySpeed4>
+                            12mph
+                        </p>
+                        <p>
+                            Wind
+                        </p>
+                    </div>
+                    
+                    <!-- rain -->
+                    <div>
+                        <p
+                        data-myDayRain4>
+                            0%
+                        </p>
+                        <p>
+                            Rain
+                        </p>
+                    </div>
+                </div>
+
+                <!-- day 5 -->
+                <div  class="bg-[#1763a2] flex justify-around items-center text-white text-center">
+                                        
+                    <!-- day -->
+                    <div class="min-w-10">
+                        <p class="font-[500] text-center"
+                        data-myDay5>
+                            Tue
+                        </p>
+                        <p
+                        data-myDate5>
+                            30/7
+                        </p>
+                    </div>
+                    
+                    <img src="images/icons/partly-cloudy-day.png" alt="" class="h-[35px] max-w-[35px]" data-myDayIcon5>
+                    
+                    <!-- low -->
+                    <div>
+                        <p
+                        data-myDayLow5>
+                            10&deg;
+                        </p>
+                        <p>
+                            Low
+                        </p>
+                    </div>
+                    
+                    <!-- high -->
+                    <div>
+                        <p
+                        data-myDayHigh5>
+                            14&deg;
+                        </p>
+                        <p>
+                            High
+                        </p>
+                    </div>
+                    
+                    <!-- wind -->
+                    <div>
+                        <p
+                        data-myDaySpeed5>
+                            12mph
+                        </p>
+                        <p>
+                            Wind
+                        </p>
+                    </div>
+                    
+                    <!-- rain -->
+                    <div>
+                        <p
+                        data-myDayRain5>
+                            0%
+                        </p>
+                        <p>
+                            Rain
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ASK LOCATION ACCESS -->
+            <div class=" absolute bg-gradient-to-br from-green-500 to-green-700 -inset-2 grid place-content-center place-items-center gap-4 "
+            data-grantAccessScreen>
+                <img src="images/location.png" alt="" class="h-32 [filter:drop-shadow(0px_0px_100px_black)]">
+                <h1 class="text-center text-white text-6xl font-bold tracking-wide font-sans">
+                    Grant Location Access
+                </h1>
+                <p class="text-white text-lg font-sans">
+                    Allow access to get weather information
+                </p>
+                <button class="bg-green-500 rounded-sm py-3 px-5 text-lg text-slate-50 font-[500] cursor-pointer active:scale-95 transition-all duration-100"
+                data-locationAccessButton>
+                    Allow Access
+                </button>
+            </div>
+
+        </div>
+
+        <!-- LOADING SCREEN -->
+        <div class="absolute top-0 bottom-0 left-0 right-0 hidden flex justify-center items-center h-full w-full bg-[rgba(0,0,0,0.5)]"
+        data-loadingScreen>
+            <img src="images/loading.gif" alt="" class="h-96">
+        </div>
+
+    </div>
+
+    <!-- left section -->
+    <script src="index.js"></script>
+
+    <!-- right section -->
+    <script src="index2.js"></script>
+</body>
+</html>
